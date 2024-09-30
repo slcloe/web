@@ -42,7 +42,7 @@
     
     <div id="chatbox"></div>
     <input type="text" id="user-input" placeholder="질문을 입력하세요...">
-    <button id="send-button">엔터를 눌러주시개</button>
+    <button id="send-button">옷쮜한테 물어보기</button>
 
     <script>
 
@@ -66,3 +66,4 @@
     </script>
 </body>
 </html>
+
