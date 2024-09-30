@@ -28,7 +28,7 @@
         #send-button {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #e0a250;
             color: white;
             border: none;
             cursor: pointer;
@@ -45,16 +45,21 @@
     <button id="send-button">엔터를 눌러주시개</button>
 
     <script>
-    document.getElementById('user-input').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            var question = this.value;
+
+    document.getElementById('send-button').addEventListener('click', function() {
+        var question = document.getElementById('user-input').value;
+        if (question.trim() !== '') {
+            // 사용자 질문을 채팅창에 추가
+            document.getElementById('chatbox').innerHTML += '<p><strong>사용자:</strong> ' + question + '</p>';
+            
             fetch('http://localhost:9090/ai?message=' + encodeURIComponent(question), {
                 method: 'GET'
             })
             .then(response => response.text())
             .then(data => {
-                document.getElementById('chatbox').innerHTML += '<p>' + data + '</p>';
-                this.value = '';
+                // 서버 응답을 채팅창에 추가
+                document.getElementById('chatbox').innerHTML += '<p><strong>대현자 옥지:</strong> ' + data + '</p>';
+                document.getElementById('user-input').value = '';
             });
         }
     });
